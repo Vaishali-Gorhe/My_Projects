@@ -21,8 +21,7 @@
 
 ##### Dependancies ###### 
 - please Install this Dependancies
-# Python Version 3.7.5
-# pip install -r requirements.txt
+python == 3.7.5
 Django==2.2.4
 djangorestframework==3.11.0
 django-cors-headers==3.2.1
