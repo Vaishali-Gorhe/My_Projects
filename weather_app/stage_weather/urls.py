@@ -10,5 +10,8 @@ urlpatterns = [
     path('weather', views.weather, name='weather'),
     path('search',views.search,name='search'),
 
+    path('weather_data',views.weather_data,name='weather_data'),
+
+ 
 
 ]

@@ -1,3 +1,4 @@
+from unittest import result
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
@@ -66,7 +67,7 @@ def signin(request):
         if user is not None:
             login(request, user)
             # messages.info(request, 'Welcome to my Website')
-            return redirect('search')
+            return redirect('weather_data')
         else:
             # messages.warning(request, "Invalid credentials")
             return redirect('home')
@@ -76,7 +77,7 @@ def signin(request):
     return render(request, "signin.html")
 
 
-API_KEY = "NYjoFmG4iZBY9cXAP5HivGHRqj9CRilK"
+API_KEY = "rW7eqasgUvIPmsLYMcKJC2fAHQavA2nd"
 import urllib
 import json
 
@@ -92,12 +93,15 @@ def getLocation(City_Name):
     city_name = data[0]['EnglishName']
     region_name = data[0]['Region']['EnglishName']
     country_name = data[0]['Country']['EnglishName']
-    return(location_key)
+    data = {"city_name":city_name,"location_key":location_key,"region_name":region_name,"country_name":country_name}
+    
+    return(data)
 
 
+import requests
+import datetime 
 
-
-def search(request):
+def weather_data(request):
     print("calling search")
     if 'city' in request.GET:
         City_Name = request.GET['city']
@@ -105,38 +109,43 @@ def search(request):
         # fetch the weather from AccuWeather
 
         location_key = getLocation(City_Name)
-
-        daily_forcastURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+location_key+"?apikey="+API_KEY+"&details=True"
-
-        with urllib.request.urlopen(daily_forcastURL) as daily_forcastURL:
-            data = json.loads(daily_forcastURL.read().decode('utf-8'))
+        print("dataaa",location_key)
         
-        for i in data['DailyForecasts']:
-            print("i====>>>",i)
+        daily_forcastURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+location_key['location_key']+"?apikey="+API_KEY+"&details=True"
+# 
+        response = requests.get(daily_forcastURL)
+        weather_data = response.json().get('DailyForecasts',{})
+        print("weather_data==>",type(weather_data))
+       
+        for i in weather_data:
 
-        #     now = datetime.now()
-        #     date = now.strftime("%B %d, %Y %H:%M:%S")
+            now = datetime.datetime.now()
+            date = now.strftime("%B %d, %Y %H:%M:%S")
             
-        #     min_temp = i['Temperature']['Minimum']['Value'] 
-        #     max_temp = i['Temperature']['Maximum']['Value']
-        #     unit = i['Temperature']['Minimum']['Unit']
-        #     short_phase =  i['Day']['ShortPhrase']
-        #     rain_probability = i['Day']['RainProbability']
+            region = location_key['region_name']
+            country = location_key['country_name']
+            min_temp = i['Temperature']['Minimum']['Value'] 
+            max_temp = i['Temperature']['Maximum']['Value']
+            unit = i['Temperature']['Minimum']['Unit']
+            LongPhrase =  i['Day']['LongPhrase']
+            rain_probability = i['Day']['RainProbability']
+
+           
+        all_data = {"date":date,"rain_probability":rain_probability , "LongPhrase":LongPhrase, "min_temp":min_temp,"max_temp":max_temp,"unit":unit,"region":region,"country":country}
+        print("type==",type(all_data))
+        print("all_data",all_data)
+
+        return render(request, "weather.html", {"all_data":all_data})
+
+    else:
+        return render(request, "weather.html")
+        
 
 
-    return render(request, "weather.html")
 
 
 
-
-
-
-
-
-
-
-
-def weather(request):
+def search(request):
     print("calling weather")
     # if 'city' in request.GET:
 
