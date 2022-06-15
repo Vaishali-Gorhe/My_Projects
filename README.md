@@ -1,7 +1,5 @@
-# My_Projects
 
-
-# Django- Weather_App
+## Django- Weather_App
 
 - In this  **WEATHER WEB APP WITH COMPLETE AUTHENTICATION** project you can find the current weather of any location (by city name) in the world .
 - This app brings you the latest information on weather condition. 
