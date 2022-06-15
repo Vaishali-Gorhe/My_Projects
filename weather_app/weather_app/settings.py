@@ -16,6 +16,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -28,6 +30,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# rest framework configuration
+REST_FRAMEWORK = {
+    # 'DEFAULT_AUTHENTICATION_CLASSES': ('stage_manager.models.JWTAuthentication',),
+    'EXCEPTION_HANDLER': 'weather_app.configurations.drfErrorNamespace.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stage_weather',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +67,7 @@ ROOT_URLCONF = 'weather_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,9 +88,17 @@ WSGI_APPLICATION = 'weather_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'NAME': "weather_app" ,
+        'ENGINE': 'django.db.backends.mysql',
+        'USER':"root" ,
+        'PASSWORD':"root" ,
+        'HOST': '127.0.0.1' ,
+        'PORT':3306 ,
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+    },
+
 }
 
 

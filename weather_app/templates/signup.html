@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign Up</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm backgroundImgNav navbar-dark">
+  <a class="navbar-brand" href="/">The Weather App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-      target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+         <a class="nav-link" href="/">Home</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Contact us</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/signin">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+      </ul>
+
+  </div>  
+</nav>
+
+
+<div class="jumbotron text-center backgroundImg">
+  
+ <div class="container mt-4">
+    <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+    <div class="row">
+    <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-8">
+    <div class="card mt-4">
+
+        
+    <div class="card-body">   
+     <div class="form-group">
+     <h4 class="text-center">SIGN UP</h4>
+     </div>
+     <form method="post" action="/signup">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="username" 
+            name="username" 
+            placeholder="Create A Username" Required>
+      </div>
+
+
+      <div class="form-group" style="text-align: left">
+          <label for="fname">First Name</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              id="fname" 
+              name="fname" 
+              placeholder="Enter Your First Name" Required>
+      </div>
+
+      <div class="form-group" style="text-align: left">
+          <label for="lname">Last Name</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              id="lname" 
+              name="lname" 
+              placeholder="Enter Your Last Name" Required>
+      </div>
+      <div class="form-group" style="text-align: left">
+          <label for="email">Email Address</label>
+          <input 
+              type="email" 
+              class="form-control" 
+              id="email" 
+              name="email" 
+              placeholder="Enter Your Email Address" Required>
+      </div>
+      <div class="form-group" style="text-align: left">
+          <label for="pass1">Password</label>
+          <input 
+              type="password" 
+              class="form-control" 
+              id="pass1" 
+              name="pass1" 
+              placeholder="Create Your Password" Required>
+      </div>
+      <div class="form-group" style="text-align: left">
+          <label for="pass2">Confirm Password</label>
+          <input 
+              type="password" 
+              class="form-control" 
+              id="pass2" 
+              name="pass2" 
+              placeholder="Confirm Your Password" Required>
+      </div>
+      <button type="submit" class="btn btn-outline-light">SIGN UP</button>
+  </form>
+
+    <span>Already a User?</span> <a href="/signin">login</a>
+    </div>   
+ 
+</div>
+</div>
+</div>
+
+</body>
+</html>
+
+<style>
+.backgroundImg {
+	background-color: #0cbaba;
+	background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+ 	background-size: cover;
+  	background-repeat: no-repeat;
+  	width: 100%;
+  	height:790px ;
+}
+.backgroundImgNav{
+                background-color: #0cbaba;
+	background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+                height:70px ;
+}
+
+.card{
+	background-color: #7ee8fa;
+	background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+ }
+
+</style>
