@@ -1,0 +1,10 @@
+##### Dependancies ###### 
+# Python Version 3.7.5
+# pip install -r requirements.txt
+
+Django==2.2.4
+djangorestframework==3.11.0
+django-cors-headers==3.2.1
+django-session-timeout==0.1.0
+mysqlclient==1.4.6
+requests==2.23.0
