@@ -5,7 +5,7 @@
 
 - In this  **WEATHER WEB APP WITH COMPLETE AUTHENTICATION** project you can find the current weather of any location (by city name) in the world .
 - This app brings you the latest information on weather condition. 
-- To get the Weather Condition user external API integration . i.e **https://developer.accuweather.com/**
+- To get the Weather Condition use external API integration . i.e **https://developer.accuweather.com/**
 
 
 ## FEATURES
