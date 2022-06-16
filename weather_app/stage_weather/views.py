@@ -145,87 +145,9 @@ def weather_data(request):
 
 
 
-def search(request):
-    print("calling weather")
-    # if 'city' in request.GET:
-
-    # #     City_Name = request.GET['city']
-    #     print("City_Name=>",request.GET['city'])
-    # fetch the weather from AccuWeather
-        # location_key = getLocation(City_Name)
-
-        # daily_forcastURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+location_key+"?apikey="+API_KEY+"&details=True"
-
-        # with urllib.request.urlopen(daily_forcastURL) as daily_forcastURL:
-        #     data = json.loads(daily_forcastURL.read().decode('utf-8'))
-        
-        # for i in data['DailyForecasts']:
-
-        #     now = datetime.now()
-        #     date = now.strftime("%B %d, %Y %H:%M:%S")
-            
-        #     min_temp = i['Temperature']['Minimum']['Value'] 
-        #     max_temp = i['Temperature']['Maximum']['Value']
-        #     unit = i['Temperature']['Minimum']['Unit']
-        #     short_phase =  i['Day']['ShortPhrase']
-        #     rain_probability = i['Day']['RainProbability']
-
-    return render(request, "weather.html")
-
-
-
-
-
 def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
 
 
-
-# API_KEY = "rdQ3rQrnNNrat4dp2C2iZuInGvzAHxwY"
-
-# def getLocation(City_Name):
-#     search_address = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey="+API_KEY+"&q="+City_Name+"&details=true"
-#     with urllib.request.urlopen(search_address) as search_address:
-#         data = json.loads(search_address.read().decode())
-#     location_key = data[0]['Key']
-#     city_name = data[0]['EnglishName']
-#     region_name = data[0]['Region']['EnglishName']
-#     country_name = data[0]['Country']['EnglishName']
-#     return(location_key)
-
-# from datetime import date, datetime
-
-
-def weather(request):
-    if 'city' in request.GET:
-        City_Name = request.GET['city']
-        print("City_Name=>",City_Name)
-    # fetch the weather from AccuWeather
-        # location_key = getLocation(City_Name)
-
-        # daily_forcastURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+location_key+"?apikey="+API_KEY+"&details=True"
-
-        # with urllib.request.urlopen(daily_forcastURL) as daily_forcastURL:
-        #     data = json.loads(daily_forcastURL.read().decode('utf-8'))
-        
-        # for i in data['DailyForecasts']:
-
-        #     now = datetime.now()
-        #     date = now.strftime("%B %d, %Y %H:%M:%S")
-            
-        #     min_temp = i['Temperature']['Minimum']['Value'] 
-        #     max_temp = i['Temperature']['Maximum']['Value']
-        #     unit = i['Temperature']['Minimum']['Unit']
-        #     short_phase =  i['Day']['ShortPhrase']
-        #     rain_probability = i['Day']['RainProbability']
-
-
-        return render(request, 'weather.html')
-
-
-# decode_data = json.loads(resp.data.decode('utf-8'))
-#             User_Instance["IP_ADDRESS"] = getClientIp(request)  
-#             User_Instance["IP_CITY"] = decode_data['city']
-#             User_Instance["IP_COUNTRY"] = decode_data['country']
